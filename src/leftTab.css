@@ -3,6 +3,12 @@
 .subBtn{
     margin-top: 10px;
 }
+
+
+
 .tabs{
-    width: fit-content;
+    width: 150px;
+}
+.tabs:active{
+    background-color: azure;
 }
