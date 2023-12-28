@@ -13,7 +13,7 @@ function LeftTab() {
     const [tabs, setTabs] = useState([]);
 
     const [showModal, setShowModal] = useState(false);
-    const [newProject, setNewProject] = useState({ name: '', content: '' });
+    const [newProject, setNewProject] = useState({ name: ''});
 
     const handleInputChange = (e) => {
         setNewProject({ ...newProject, [e.target.name]: e.target.value });
@@ -23,8 +23,8 @@ function LeftTab() {
         const { name, content } = newProject;
 
         // Check if the name or content is empty
-        if (!name || !content) {
-            alert('Please enter both name and content for the new project.');
+        if (!name) {
+            alert('Please enter both name for the new project.');
             return;
         }
 
@@ -32,14 +32,14 @@ function LeftTab() {
         const newKey = `tab-${tabs.length + 1}`;
 
         // Create a new tab object
-        const newTab = { key: newKey, title: name, content };
+        const newTab = { key: newKey, title: name};
 
         // Update the state to include the new tab
         setTabs([...tabs, newTab]);
 
         // Close the modal and reset the newProject state
         setShowModal(false);
-        setNewProject({ name: '', content: '' });
+        setNewProject({ name: '' });
     };
 
     return (
@@ -84,17 +84,6 @@ function LeftTab() {
                                         onChange={handleInputChange}
                                     />
                                 </Form.Group>
-                                <Form.Group controlId="formProjectContent">
-                                    <Form.Label>Project Content</Form.Label>
-                                    <Form.Control
-                                        as="textarea"
-                                        rows={5}
-                                        placeholder="Enter project content"
-                                        name="content"
-                                        value={newProject.content}
-                                        onChange={handleInputChange}
-                                    />
-                                </Form.Group>
                             </Form>
                         </Modal.Body>
                         <Modal.Footer>
@@ -111,7 +100,6 @@ function LeftTab() {
                     <Tab.Content>
                         {tabs.map((tab) => (
                             <Tab.Pane key={tab.key} eventKey={tab.key}>
-                                {tab.content}
                                 <TodoList />
                             </Tab.Pane>
 
